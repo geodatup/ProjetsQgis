@@ -14,8 +14,10 @@ Pour afficher l'interface avancée, en bas du panneaux boite à outil, sélécti
 
 ###Comment déplacer des étiquettes avec la souris ? (souvent mal placées)
 
-Définir emplacement `libre (lent)` dans `style de couche` > `zone de texte` > l'onglet `placement`
+Définir emplacement `libre (lent)` dans `propriété de la couche` >  `Etiquettes` > 
+`Emplacement`
 
+Penser à activer l'affichage de étiquette dans le premier menu déroulant. 
 
 ###Comment récupérer la légende créée pour un autre projet ?
 
