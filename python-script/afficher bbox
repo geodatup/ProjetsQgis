@@ -1,0 +1,30 @@
+https://wxs.ign.fr/cz5mlqi2ofy0ldqmockrea54/geoportail/wfs?service=wfs&version=1.1.0&request=GetFeature&typeName=BDPARCELLAIRE-VECTEUR_WLD_BDD_WGS84G:parcelle&SRSNAME=EPSG:4326&bbox=2.02775066623,43.3658042946,2.10242969594,43.3850624971
+
+wgsCRS = QgsCoordinateReferenceSystem(4326)
+canvas = iface.mapCanvas()
+canCRS = canvas.mapRenderer().destinationCrs()
+canvas.extent()
+bBox = canvas.extent()
+
+print(canCRS,wgsCRS)
+
+if canCRS == wgsCRS:
+	# get get lat long of canvas extent
+	lonMin = bBox.xMinimum()
+	latMin = bBox.yMinimum()
+	lonMax = bBox.xMaximum()
+	latMax = bBox.yMaximum()
+	print("bbox="+ str(lonMin)+","+ str(latMin)+","+ str(lonMax)+","+ str(latMax))
+
+
+print("ok")
+
+
+ST_Intersects(the_geom,BBOX(ST_GeometryFromText('POINT(2.02775066623 43.3658042946)'),ST_GeometryFromText('POINT(2.10242969594 43.3850624971)')))
+le serveur WFS ne comprends pas l'option "Envelope"
+
+espacepro@ign.fr :
+mail num clé + la demande WFS
+
+accès par demande via son compte
+espace pro > mon compte > procédure de demande de gratuité.
