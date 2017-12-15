@@ -1,0 +1,59 @@
+C:\ms4w\setenv.bat
+
+
+#Construire Hillshade depuis Aster DEM
+
+Definir les variables d'environnement de nos sources et notre espace de travail.
+```bash
+
+#set DIR_PRODUCT_DEM_NAME=[nomdudossierDEM]
+#set DIR_PRODUCT_VRT_NAME=[nomdudossierVRT]
+#set DATA_DIR_PRODUCT_SHP_NAME=[nomdudossierSHP]
+#set PYTHON_SCRIPT_DIR=[chemin\vers\dossier\script\python]
+
+set DIR_PRODUCT_DEM_NAME=C:\Users\Yogis\Documents\GIS_DataBase\DEM
+set DIR_PRODUCT_HILLSHADE_NAME=C:\Users\Yogis\Documents\GIS_DataBase\DEM\Aster_europe_ombrage
+set DIR_PRODUCT_CONTOUR_NAME=C:\Users\Yogis\Documents\GIS_DataBase\DEM\Aster_contour
+
+```
+
+On créé un fichier virtuel:
+```bash
+gdalbuildvrt -resolution lowest  %DIR_PRODUCT_DEM_NAME%\Aster_France_DEM.vrt %DIR_PRODUCT_DEM_NAME%\*.tif
+```
+
+On traduit la mosaique virtuelle en un seul fichier Tif :
+```bash
+gdalwarp -of GTIff -co "COMPRESS=LZW" -co "TFW=YES" -co "BIGTIFF=YES" -srcnodata -32768 %DIR_PRODUCT_DEM_NAME%\Aster_France_DEM.vrt %DIR_PRODUCT_DEM_NAME%\France_ASTER.tif
+```
+
+Note :
+If the input raster is in a spherical coordinate system, such as decimal degrees, the results from Hillshade may look peculiar. This is due to the difference in measure between the horizontal ground units and the elevation z units. Since the length of a degree of longitude changes with latitude, you will need to specify an appropriate z-factor for that latitude. If your x,y units are decimal degrees and your z units are meters, some appropriate z-factors for particular latitudes are:
+Latitude     Z-factor
+     0           0.00000898
+    10           0.00000912
+    20           0.00000956
+    30           0.00001036
+    40           0.00001171
+    50           0.00001395
+    60           0.00001792
+    70           0.00002619
+    80           0.00005156
+
+
+    On réalise l'ombrage:
+```bash
+gdaldem hillshade -z 0.00001171 %DIR_PRODUCT_DEM_NAME%\France_ASTER.tif %DIR_PRODUCT_HILLSHADE_NAME%\ombrage_France_ASTER.tif
+```
+
+On réalise les courbes de contours à 100m 50m 10m et 5 metres
+```bash
+gdal_contour -a ELEVATION -i 100.0 %DIR_PRODUCT_DEM_NAME%\France_ASTER.tif %DIR_PRODUCT_CONTOUR_NAME%\Aster_France_contour_100m
+
+gdal_contour -a ELEVATION -i 50.0 %DIR_PRODUCT_DEM_NAME%\France_ASTER.tif %DIR_PRODUCT_CONTOUR_NAME%\Aster_France_contour_50m
+
+gdal_contour -a ELEVATION -i 10.0 %DIR_PRODUCT_DEM_NAME%\France_ASTER.tif %DIR_PRODUCT_CONTOUR_NAME%\Aster_France_contour_10m
+
+gdal_contour -a ELEVATION -i 5.0 %DIR_PRODUCT_DEM_NAME%\France_ASTER.tif %DIR_PRODUCT_CONTOUR_NAME%\Aster_France_contour_5m
+
+```

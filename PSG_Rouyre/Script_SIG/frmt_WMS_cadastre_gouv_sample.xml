@@ -1,0 +1,18 @@
+<GDAL_WMS>
+<Service name="WMS">
+<Version>1.3.0</Version>
+<CRS>EPSG:4326</CRS>
+<ServerUrl>http://inspire.cadastre.gouv.fr/scpc/11407.wms?</ServerUrl>
+<ImageFormat>image/png</ImageFormat>
+<Layers>AMORCES_CAD,LIEUDIT,CP.CadastralParcel,BORNE_REPERE,BU.Building,VOIE_COMMUNICATION,HYDRO,DETAIL_TOPO,CLOTURE,SUBFISCAL</Layers>
+</Service>
+<DataWindow>
+<UpperLeftX>43.39896868483885584</UpperLeftX>
+<UpperLeftY>2.10854460091107487</UpperLeftY>
+<LowerRightX>43.35000322907546177</LowerRightX>
+<LowerRightY>2.04733778120683141</LowerRightY>
+<SizeX>1024</SizeX>
+<SizeY>1024</SizeY>
+</DataWindow>
+<MaxConnections>1</MaxConnections>
+</GDAL_WMS>

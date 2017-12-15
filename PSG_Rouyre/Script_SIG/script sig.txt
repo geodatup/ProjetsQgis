@@ -1,0 +1,29 @@
+C:\ms4w\setenv.bat
+
+set DIR_PRODUCT_DEM_NAME=C:\Users\Yogis\Documents\GIS_DataBase\DEM
+set DIR_PRODUCT_HILLSHADE_NAME=C:\Users\Yogis\Documents\GIS_DataBase\DEM\Aster_europe_ombrage
+set DIR_PRODUCT_CONTOUR_NAME=C:\Users\Yogis\Documents\GIS_DataBase\DEM\Aster_contour
+
+
+gdalbuildvrt -resolution lowest  %DIR_PRODUCT_DEM_NAME%\Aster_France_DEM.vrt %DIR_PRODUCT_DEM_NAME%\*.tif
+
+gdalwarp -of GTIff -co "COMPRESS=LZW" -co "TFW=YES" -co "BIGTIFF=YES" -srcnodata -32768 %DIR_PRODUCT_DEM_NAME%\Aster_France_DEM.vrt %DIR_PRODUCT_DEM_NAME%\France_ASTER.tif
+
+gdaldem hillshade -z 0.00001171 %DIR_PRODUCT_DEM_NAME%\France_ASTER.tif %DIR_PRODUCT_HILLSHADE_NAME%\ombrageFrance_ASTER.tif
+
+
+gdaldem hillshade -z 0.00001171  C:\Users\Yogis\Documents\Project_maps\PSG_Rouyre\Data\Aster_rouyre_DEM\Rouyre_Aster_DEM.tif C:\Users\Yogis\Documents\Project_maps\PSG_Rouyre\Data\Aster_rouyre_DEM\Aster_rouyre_ombre.tif 
+
+
+gdal_contour -a ELEVATION -i 10.0 %DIR_PRODUCT_DEM_NAME%\France_ASTER.tif %DIR_PRODUCT_CONTOUR_NAME%\Aster_France_contour_10m
+
+gdal_contour -a ELEVATION -i 5.0 %DIR_PRODUCT_DEM_NAME%\France_ASTER.tif %DIR_PRODUCT_CONTOUR_NAME%\Aster_France_contour_5m
+
+
+gdaldem slope C:/Users/Yogis/Documents/Project_maps/PSG_Rouyre/Data/Aster_rouyre_DEM/Rouyre_Aster_DEM.tif  C:/Users/Yogis/Documents/Project_maps/PSG_Rouyre/Data/Aster_rouyre_DEM/pentes.tif
+-p -s 1.0
+
+
+
+
+gdal_translate -of PNG -outsize 500 250 C:\Users\Yogis\Documents\Project_maps\PSG_Rouyre\Script_SIG\frmt_TMS_cadastre_osm.xml C:\Users\Yogis\Documents\GIS_DataBase\cadastre\Tiles_gouv\test.png

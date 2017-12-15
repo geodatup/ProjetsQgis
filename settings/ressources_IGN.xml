@@ -1,0 +1,5 @@
+<!DOCTYPE connections>
+<qgsWMSConnections version="1.0">
+    <wms ignoreGetMapURI="false" smoothPixmapTransform="false" dpiMode="7" password="Mcot9a9.u" ignoreGetFeatureInfoURI="false" referer="" username="geodatup" url="https://wxs.ign.fr/veyr5n0jqim3hsgny5o9qrxh/geoportail/wmts?SERVICE=WMTS&amp;REQUEST=GetCapabilities" invertAxisOrientation="false" ignoreAxisOrientation="false" name="WMTS Geoportail"/>
+    <wms ignoreGetMapURI="false" smoothPixmapTransform="false" dpiMode="7" password="mcot9a9u" ignoreGetFeatureInfoURI="false" referer="" username="hugoroussaffa" url="https://wxs.ign.fr/o492zx51daqyxktyaj308f00/geoportail/v/wms" invertAxisOrientation="false" ignoreAxisOrientation="false" name="WMS vecteur geoportail IGN"/>
+</qgsWMSConnections>

@@ -1,0 +1,134 @@
+MAP
+  FONTSET "[fontsetpath]"
+  EXTENT -10808930.4131554 -2825327.43367495 10307078.9497427 8945765.39165656
+  IMAGETYPE "png"
+  NAME "QGIS-MAP-cad"
+  SIZE 600 600
+  STATUS ON
+  UNITS METERS
+
+  OUTPUTFORMAT
+    NAME "png"
+    MIMETYPE "image/png"
+    DRIVER "AGG/PNG"
+    EXTENSION "png"
+    IMAGEMODE RGB
+    TRANSPARENT TRUE
+  END # OUTPUTFORMAT
+
+  PROJECTION
+    "proj=lcc"
+    "lat_1=49"
+    "lat_2=44"
+    "lat_0=46.5"
+    "lon_0=3"
+    "x_0=700000"
+    "y_0=6600000"
+    "ellps=GRS80"
+    "towgs84=0,0,0,0,0,0,0"
+    "units=m"
+    "no_defs"
+  END # PROJECTION
+  LEGEND
+    KEYSIZE 20 10
+    KEYSPACING 5 5
+    LABEL
+      SIZE MEDIUM
+      OFFSET 0 0
+      SHADOWSIZE 1 1
+      TYPE BITMAP
+    END # LABEL
+    STATUS OFF
+  END # LEGEND
+
+  QUERYMAP
+    SIZE -1 -1
+    STATUS OFF
+    STYLE HILITE
+  END # QUERYMAP
+
+  SCALEBAR
+    INTERVALS 4
+    LABEL
+      SIZE MEDIUM
+      OFFSET 0 0
+      SHADOWSIZE 1 1
+      TYPE BITMAP
+    END # LABEL
+    SIZE 200 3
+    STATUS OFF
+    UNITS MILES
+  END # SCALEBAR
+
+  WEB
+    FOOTER ""
+    HEADER ""
+    TEMPPATH ""
+    METADATA
+      "ows_onlineresource"	"http://localhost/cgi-bin/mapserv?map=C:/Users/Yogis/Documents/Project_maps/PSG_Rouyre/Mapfile/cadastre.map"
+      "ows_enable_request"	"*"
+      "ows_srs"	"EPSG:2154"
+      "ows_title"	"QGIS-MAP-cad"
+    END # METADATA
+    TEMPLATE "[templatepath]"
+  END # WEB
+
+  LAYER
+    DATA "C:/Users/Yogis/Documents/GIS_DataBase/Emprise/Rouyre_poly.shp"
+    EXTENT 2.05842149724098 43.3677538768662 2.0725054401479 43.3842892744417
+    METADATA
+      "ows_title"	"Rouyre_poly"
+    END # METADATA
+    NAME "Rouyre_poly"
+    PROJECTION
+      "proj=longlat"
+      "datum=WGS84"
+      "no_defs"
+    END # PROJECTION
+    STATUS ON
+    TILEITEM "location"
+    TYPE POLYGON
+    UNITS METERS
+    CLASS
+      NAME "Single symbol"
+      STYLE
+        OUTLINECOLOR 250 0 0
+        WIDTH 0.26
+      END # STYLE
+    END # CLASS
+  END # LAYER
+
+  LAYER
+    CONNECTION "https://wxs.ign.fr/o492zx51daqyxktyaj308f00/geoportail/wmts?SERVICE%3DWMTS%26REQUEST%3DGetCapabilities"
+    CONNECTIONTYPE WMS
+    EXTENT -7031016.96214672 -2438706.162816 6216792.81063747 6637406.38215405
+    METADATA
+      "ows_name"	"CADASTRALPARCELS.PARCELS"
+      "ows_srs"	"EPSG:3857"
+      "wms_format"	"bdparcellaire"
+      "ows_title"	"Parcelles cadastrales"
+      "wms_server_version"	"1.1.1"
+    END # METADATA
+    NAME "Parcelles cadastrales"
+    PROJECTION
+      "proj=merc"
+      "a=6378137"
+      "b=6378137"
+      "lat_ts=0.0"
+      "lon_0=0.0"
+      "x_0=0.0"
+      "y_0=0"
+      "k=1.0"
+      "units=m"
+      "nadgrids=@null"
+      "wktext"
+      "no_defs"
+    END # PROJECTION
+    STATUS ON
+    TILEITEM "location"
+    OPACITY 53
+    TYPE RASTER
+    UNITS METERS
+  END # LAYER
+
+END # MAP
